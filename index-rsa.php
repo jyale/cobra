@@ -57,12 +57,12 @@ include("header.html");
 
        
         <div class="span4">
-		  <p><a class="btn btn-inverse btn-large" href="login.php">I've got docs to leak &raquo</a></p>
+		  <p><a class="btn btn-inverse btn-large" href="rsa/login.php">I've got docs to leak &raquo</a></p>
           <p>You have the docs but no one will believe they're credible. Anonymously sign your files now</p>
-          <p><a class="btn btn-inverse btn-large" href="verify.php">Verify a leak &raquo</a></p>
+          <p><a class="btn btn-inverse btn-large" href="rsa/verify.php">Verify a leak &raquo</a></p>
           <p>Got a signed leak? But is it credible? We'll find out.</p>
 <p><br></p>
-    	   <p><a class="btn btn-info btn-large" href="anon-pickup.php">Anonymous key pickup &raquo</a></p>
+    	   <p><a class="btn btn-info btn-large" href="rsa/anon-pickup.php">Anonymous key pickup &raquo</a></p>
 	   <p>Want to sign a leak but don't want to identify yourself by logging in with Facebook? Anonymously pickup your private key.</p>
 	
         </div>

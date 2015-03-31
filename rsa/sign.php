@@ -4,7 +4,7 @@
 // FACEBOOK LOGIN STUFF
 ///////////////
 
-require 'php-sdk/facebook.php';
+require '../php-sdk/facebook.php';
 
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
@@ -67,7 +67,7 @@ echo('--->');
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;

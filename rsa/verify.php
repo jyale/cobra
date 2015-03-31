@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -37,7 +37,7 @@
   <body>
 
 <?php
-include("header.html");
+include("../header.html");
 ?>
   
     <div class="container">
@@ -77,7 +77,7 @@ include("header.html");
       <hr>
 
     <?php
-include("footer.html");
+include("../footer.html");
 ?>
   
     <!-- Le javascript

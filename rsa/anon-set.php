@@ -4,7 +4,7 @@
 // FACEBOOK LOGIN STUFF
 ///////////////
 
-require 'php-sdk/facebook.php';
+require '../php-sdk/facebook.php';
 
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
@@ -29,7 +29,7 @@ $file = $_REQUEST['file'];
 <meta charset="utf-8">   
 <title>Crypto-Book Black Box</title>   
 <meta name="description" content="weak">   
-<link href="assets/css/bootstrap.css" rel="stylesheet">  
+<link href="../assets/css/bootstrap.css" rel="stylesheet">  
 
 </head>  
 <body>  

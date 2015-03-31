@@ -4,16 +4,16 @@
 <meta charset="utf-8">   
 <title>Crypto-Book Black Box</title>   
 <meta name="description" content="weak">   
-<link href="assets/css/bootstrap.css" rel="stylesheet">  
+<link href="../assets/css/bootstrap.css" rel="stylesheet">  
 
 </head>  
 <body>  
 
 <?php
-//include("header.html");
+//include("../header.html");
 ?>
 
-<form class='form-horizontal' enctype="multipart/form-data" action="email/distribute-keys.php" method="POST">
+<form class='form-horizontal' enctype="multipart/form-data" action="../email/distribute-keys.php" method="POST">
         <fieldset>  
 
 <legend>
@@ -45,7 +45,7 @@ Enter email addresses of everyone you want in your anonymity set (remember to in
 
 <!--
 <?php
-include("footer.html");
+include("../footer.html");
 ?>
 -->
 
