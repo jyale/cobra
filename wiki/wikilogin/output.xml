@@ -1,0 +1,7 @@
+<?xml version="1.0"?><api><login result="NeedToken" token="df0b8c0e7f40b68b652c2b1db893e907" cookieprefix="cryptowiki" sessionid="67b76990eae4d36ec76d619a4a40465f" /></api>
+<!-- REDIRECT TO CRYPTO WIKI HOMEPAGE -->
+
+    <meta http-equiv="refresh" content="1;url=http://mahan.webfactional.com/wiki">
+        <script type="text/javascript">
+            window.location.href = "http://mahan.webfactional.com/wiki"
+        </script>

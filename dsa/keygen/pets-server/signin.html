@@ -1,0 +1,32 @@
+<html>
+	<body>
+		<form class='crypto-book-signin' action='verify.php'>
+			<div hidden>
+				<span id='challenge'>challenge</span>
+				<input type='text' id='c0' name='c0'>
+				<input type='text' id='s' name='s'>
+				<input type='text' id='tag' name='tag'>
+				<input hidden type='text' id='start' name='start'>
+				<input hidden type='text' id='end' name='end'>
+			</div>
+			<input type='button' id='signin' value='Sign in with Crypto-Book'>
+		</form>
+		<div id=info>
+			<h3>What's actually happening?</h3>
+			Here you get to use the keys you saved before to authenticate
+			as some member of the DeDiS group. This page includes a special
+			Crypto-Book signin widget that the extension recognizes. When
+			you click the button, the extension intercepts the event and
+			does some magic:
+			<ul>
+				<li>Loads your Crypto-Book keys from the browser local
+					storage.</li>
+				<li>Produces a linkable ring signature on a challenge
+					message hidden in the widget, using these keys.</li>
+				<li>Populates another hidden field with the resulting
+					signature (use DevTools to make these fields
+					visible if you're curious about the details).</li>
+				<li>Finally, submits the form as normal.</li>
+		</div>
+	</body>
+</html>

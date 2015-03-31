@@ -1,0 +1,5 @@
+Start: 1398721701.2872
+Start: 1398721704.1868
+Got access tokens: 1398721736.7028
+Collected keys: 1398721751.1688
+Combined keys: 1398721751.3555

@@ -1,0 +1,34 @@
+========================================
+   XMLStarlet 1.5.0: ./test-suite.log
+========================================
+
+# TOTAL: 79
+# PASS:  77
+# SKIP:  0
+# XFAIL: 2
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+XFAIL: examples/bigxml-dtd
+==========================
+
+--- -	2013-09-04 20:10:06.075813310 +0000
++++ results/bigxml-dtd.out	2011-05-23 20:45:02.000000000 +0000
+@@ -1 +1 @@
+--:6553x
++-:7000x
+
+XFAIL: examples/ed-namespace
+============================
+
+FIXME: can't delete namespace nodes
+--- -	2013-09-04 20:10:06.529726488 +0000
++++ results/ed-namespace.out	2011-05-23 20:45:02.000000000 +0000
+@@ -0,0 +1,3 @@
++<doc xmlns="http://www.foo.com/namespaces/my">
++  <el/>
++</doc>
+
