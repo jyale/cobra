@@ -54,11 +54,11 @@ Dedis anonymous comment board
 <label><input type="hidden" name="name" value="<?php echo $_REQUEST["name"];?>" hidden></label>
 <label><input type="hidden" name="color" value="<?php echo $_REQUEST["color"];?>" hidden></label>
 
-<!--
-<label> Message: <br><textarea cols="35" rows="5" name="mes"></textarea></label><br>
--->
-<label> Comment: <br><input type="text" name="mes" autofocus></label><br>
 
+<label> Post: <br><textarea cols="35" rows="5" name="mes" autofocus></textarea></label><br>
+<!--
+<label> Comment: <br><input type="text" name="mes" autofocus></label><br>
+-->
 <input class="btn btn-danger btn-large" type="submit" name="post" value="Post">
 
 
@@ -84,7 +84,7 @@ if($post){
 #Write down comments#
 
 #append to start of file
-$file_data = "<font color='#" . $hexcolor . "'<b>$name</b></font> $text<br>";
+$file_data = "<font color='#" . $hexcolor . "'<b>$name</b></font> $text<br><br><br>";
 $file_data .= file_get_contents('com.txt');
 file_put_contents('com.txt', $file_data);
 

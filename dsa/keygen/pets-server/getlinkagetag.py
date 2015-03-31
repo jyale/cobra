@@ -44,7 +44,7 @@ def getpubs(ids):
 	m = len(ids)
 	pubs = range(m)
 	# public keys
-	response = urllib2.urlopen('http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php')
+	response = urllib2.urlopen('http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/getpub.php')
 	html = json.loads(response.read())
 	for i in range(m):
 		pubs[i] = int(html['pubs'][i])
@@ -59,7 +59,7 @@ def getpubs(ids):
 #f = open(sigfile,'r')
 #ids,pubs2,s1 = pickle.load(f)
 
-ids=["baford","han.ma.39589","danny.jackowitz","ennan.zhai","lining.wang","christinehong802","seth.lifland","davidiw","esyta","weiyi.wu.319"]
+ids=["jose.faleiro","baford","han.ma.39589","danny.jackowitz","ennan.zhai","lining.wang","christinehong802","seth.lifland","davidiw","esyta","weiyi.wu.319"]
 ids.sort()
 s1 = [c0,s,tag]
 

@@ -13,10 +13,6 @@ $tag = exec('python2.7 getlinkagetag.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . 
 //echo $s;
 //echo $tag;
 
-#echo "WEAKKKK";
-#echo $weak;
-#echo $tag;
-#echo "WEAKKKK";
 
 $hashh = intval($tag);
 $r = ($hashh & 0xFF0000) >> 16;
