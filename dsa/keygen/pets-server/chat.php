@@ -28,6 +28,23 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+	<script type="text/javascript">
+		var update = function() {
+			xmlHttp = new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function() {
+				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+					document.getElementById("com").innerHTML = xmlHttp.responseText;
+				}
+			}
+			xmlHttp.open("GET", "comments.php", true);
+			xmlHttp.send();
+		};
+		window.onload = function(e) {
+			update();
+			setInterval(update, 1000);
+		}
+	</script>
   </head>
 
 
@@ -54,11 +71,11 @@ Dedis anonymous comment board
 <label><input type="hidden" name="name" value="<?php echo $_REQUEST["name"];?>" hidden></label>
 <label><input type="hidden" name="color" value="<?php echo $_REQUEST["color"];?>" hidden></label>
 
-
-<label> Post: <br><textarea cols="35" rows="5" name="mes" autofocus></textarea></label><br>
 <!--
-<label> Comment: <br><input type="text" name="mes" autofocus></label><br>
+<label> Post: <br><textarea cols="35" rows="5" name="mes" autofocus></textarea></label><br>
 -->
+<label> Post: <br><input type="text" name="mes" autofocus></label><br>
+
 <input class="btn btn-danger btn-large" type="submit" name="post" value="Post">
 
 
@@ -84,26 +101,17 @@ if($post){
 #Write down comments#
 
 #append to start of file
-$file_data = "<font color='#" . $hexcolor . "'<b>$name</b></font> $text<br><br><br>";
+$name = trim($name);
+$file_data = "<font color='#" . $hexcolor . "'<b>$name</b></font> $text<br>\n";
 $file_data .= file_get_contents('com.txt');
 file_put_contents('com.txt', $file_data);
 
 }
 
 #Display comments#
-
-$read = fopen("com.txt","r+t");
 echo "<h2>All comments from Dedis group</h2><br><b>Colored word is anonymous username, text next to it is the message</b><br><br>";
-
-while(!feof($read)){
-echo fread($read,1024);
-}
-
-fclose($read);
-
-
 ?>
-
+<div id="com"></div>
 </p>
 </div></div>
 
