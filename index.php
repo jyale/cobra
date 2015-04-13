@@ -64,10 +64,15 @@ include("header.html");
 
        
         <div class="span4">
-		  <p><a class="btn btn-success btn-large" href="dsa/keygen/pets-server/extension.crx" target="_blank">Download Chrome Extension &raquo</a></p>
+		  <p><a class="btn btn-success btn-large" href="http://tinyurl.com/nyzsmpp" target="_blank">Get the Chrome Extension &raquo</a></p>
 		<p>Download the Chrome extension then go to "chrome://extensions" and drag and drop the extension in. It's going to warn you because it's not an actual published extension. You should probably restart your browser.
 </p>
 
+		  <p><a class="btn btn-success btn-large" href="dsa/keygen/pets-server/creategroup.php" target="_blank">Create chat group &raquo</a></p>
+
+		  <p><a class="btn btn-success btn-large" href="http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/221288" target="_blank">Log into DeDiS chat group &raquo</a></p>
+
+<!--
 		  <p><a class="btn btn-success btn-large" href="dsa/keygen/pets-login.php" target="_blank">Get your DeDiS keys &raquo</a></p>
 		<p>Get your DeDiS group keys. Just click "Save Keys". You'll see an alert that they were saved.</p>
 
@@ -83,7 +88,7 @@ include("header.html");
 			<input class="btn btn-warning btn-large" type='button' id='signin' value='DeDiS Anonymous Bulletin Board &raquo'>
 		</form>
 		<p>Sign in to the DeDiS comment board.</p>
-
+-->
 <br>
 <br>
 <br>

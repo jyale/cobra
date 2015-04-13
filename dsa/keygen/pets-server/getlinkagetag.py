@@ -44,7 +44,7 @@ def getpubs(ids):
 	m = len(ids)
 	pubs = range(m)
 	# public keys
-	response = urllib2.urlopen('http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/getpub.php')
+	response = urllib2.urlopen('http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/getpub.php?groupid=' + sys.argv[6])
 	html = json.loads(response.read())
 	for i in range(m):
 		pubs[i] = int(html['pubs'][i])

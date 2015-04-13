@@ -37,7 +37,7 @@
 					document.getElementById("com").innerHTML = xmlHttp.responseText;
 				}
 			}
-			xmlHttp.open("GET", "comments.php", true);
+			xmlHttp.open("GET", "comments.php?groupid=<?php echo $_REQUEST['groupid']; ?>", true);
 			xmlHttp.send();
 		};
 		window.onload = function(e) {
@@ -60,15 +60,26 @@ include("../../../header.html");
       <div class="row">
                 <div class="span8">
 
+<?php
+
+$name = $_POST["name"];
+$text = $_POST["mes"];
+$post = $_POST["post"];
+$hexcolor = $_REQUEST["color"];
+?>
 
 <h1>
-Dedis anonymous comment board
+Dedis anonymous comment board <?php echo($_REQUEST["groupid"]); ?> 
 </h1>
 <b>Write your comment below to post to the anonymous comment board below.</b>
+<br><br>
+<b>You are logged in as: <?php echo("<font color='#" . $hexcolor . "'<b>$name</b></font>")?></b>
 
+<br><br>
 <form action="" method="post">
 
 <label><input type="hidden" name="name" value="<?php echo $_REQUEST["name"];?>" hidden></label>
+<label><input type="hidden" name="groupid" value="<?php echo $_REQUEST["groupid"];?>" hidden></label>
 <label><input type="hidden" name="color" value="<?php echo $_REQUEST["color"];?>" hidden></label>
 
 <!--
@@ -85,15 +96,10 @@ Dedis anonymous comment board
 
 <?php
 
-$name = $_POST["name"];
-$text = $_POST["mes"];
-$post = $_POST["post"];
-$hexcolor = $_REQUEST["color"];
-
 if(strlen($name)<2){
 #echo('<meta http-equiv="Location" content="http://example.com/">');
 
-echo('<meta http-equiv="refresh" content="0; url=http://auvernet.org/denied/cat_not_amused.jpg" />');
+echo('<meta http-equiv="refresh" content="0; url=http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/creategroup.php" />');
 }
 
 if($post){
@@ -103,8 +109,16 @@ if($post){
 #append to start of file
 $name = trim($name);
 $file_data = "<font color='#" . $hexcolor . "'<b>$name</b></font> $text<br>\n";
-$file_data .= file_get_contents('com.txt');
-file_put_contents('com.txt', $file_data);
+
+if(!file_exists($_REQUEST["groupid"] . '-com.txt')) 
+{ 
+   $fp = fopen($_REQUEST["groupid"] . '-com.txt',"w");  
+   fwrite($fp,"0");  
+   fclose($fp); 
+}  
+
+$file_data .= file_get_contents($_REQUEST["groupid"] . '-com.txt');
+file_put_contents($_REQUEST["groupid"] . '-com.txt', $file_data);
 
 }
 

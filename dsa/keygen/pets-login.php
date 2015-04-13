@@ -79,7 +79,7 @@ $naitik = $facebook->api('/naitik');
 	$end = round(microtime(true) * 1000); 
 	exec('echo "' . $start . ' ' . $end . '" >> facebook_results.log');
 
-	$_REDIRURL = 'pets-server/fbcheckgetpriv.php?token=' . $token;
+	$_REDIRURL = 'pets-server/fbcheckgetpriv.php?token=' . $token . '&groupid=' . $_REQUEST["groupid"];
 	echo("<script> top.location.href='" . $_REDIRURL . "'</script>");
 	
 

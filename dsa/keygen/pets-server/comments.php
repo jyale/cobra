@@ -1,5 +1,5 @@
 <?php
-$read = fopen("com.txt","r+t");
+$read = fopen($_REQUEST["groupid"] . "-com.txt","r+t");
 while(!feof($read)) {
 echo fread($read,1024);
 }

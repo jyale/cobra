@@ -54,18 +54,7 @@ $array = json_decode($data, true);
 
 if($array['name']=="Crypto-Bk"){
 
-$pubs = json_decode(file_get_contents("http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/getpub.php"), true)['pubs'];
-/*
-$pubs[1] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=christinehong802");
-$pubs[2] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=danny.jackowitz");
-$pubs[3] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=davidiw");
-$pubs[4] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=ennan.zhai");
-$pubs[5] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=esyta");
-$pubs[6] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=han.ma.39589");
-$pubs[7] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=lining.wang");
-$pubs[8] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=seth.lifland");
-$pubs[9] = file_get_contents("http://mahan.webfactional.com/dsa/keygen/pets-server/getpub.php?id=weiyi.wu.319");
-*/
+$pubs = json_decode(file_get_contents("http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/getpub.php?groupid=" . $_REQUEST["groupid"]), true)['pubs'];
 
 $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/fbgetpriv.php?id=" . $token)), 'L' => $pubs);
 	echo json_encode($Data);
@@ -93,7 +82,7 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 		</div>
 
 		<h3>Sign in to the DeDiS bulletin board.</h3>
-		<form class='crypto-book-signin' action='verify.php'>
+		<form class='crypto-book-signin' action='verify.php' >
 			<div hidden>
 				<span id='challenge'>challenge</span>
 				<input type='text' id='c0' name='c0'>
@@ -101,6 +90,7 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 				<input type='text' id='tag' name='tag'>
 				<input hidden type='text' id='start' name='start'>
 				<input hidden type='text' id='end' name='end'>
+				<input hidden type='text' id='groupid' name='groupid' value='<?php echo $_REQUEST["groupid"]; ?>'>
 			</div>
 			<input class="btn btn-warning btn-large" type='button' id='signin' value='DeDiS Anonymous Bulletin Board &raquo'>
 		</form>

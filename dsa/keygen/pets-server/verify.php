@@ -3,11 +3,15 @@ $c0 = $_REQUEST['c0'];
 $s = urldecode($_REQUEST['s']);
 $tag = $_REQUEST['tag'];
 
+$groupid = $_REQUEST['groupid'];
+
+#$groupid = 'groups/006bbc';
+
 $sign_start = $_REQUEST['start'];
 $sign_end = $_REQUEST['end'];
 
-$weak = exec('python2.7 petsverifier.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end . ' ' . 'facebook.ids');
-$tag = exec('python2.7 getlinkagetag.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end . ' ' . 'facebook.ids');
+$weak = exec('python2.7 petsverifier.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end . ' ' . $groupid);
+$tag = exec('python2.7 getlinkagetag.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end . ' ' . $groupid);
 
 //echo $c0;
 //echo $s;
@@ -36,6 +40,7 @@ $nouns = "nouns.txt";
 $noun_lines = file($nouns);
 $tag = $noun_lines[intval($tag)];
 
+$tag = "Anonymous " . $tag;
 
 $weak = str_replace("file was signed by one of the following: ","", $weak);
 $weak = str_replace("[","", $weak);
@@ -87,6 +92,7 @@ function redirect_post($url, array $data)
 $chatdata = array(
     "name" => $tag,
     "color" => $hexcolor,
+    "groupid" => $groupid,
 );
 
 # check if verified successfully
@@ -94,6 +100,10 @@ if(!(count($pieces2) < 2)){
 	# redirect to chat page with tag
 	# header( 'Location: chat.php?tag=' . $tag . '&color=' . $hexcolor) ; 
 	redirect_post("chat.php", $chatdata);
+
+	#echo($tag);
+	#echo($groupid);
+	#echo($hexcolor);
 }
 
 
@@ -174,6 +184,9 @@ include("../../../header.html");
 
 	if(count($pieces2) < 2){
 	echo('<font size=3 color="red">Failed to log in :(</font>');
+
+	echo('<meta http-equiv="refresh" content="0; url=http://auvernet.org/denied/cat_not_amused.jpg" />');
+	
 	echo("<!--");
 }
 ?>
