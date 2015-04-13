@@ -6,8 +6,8 @@ $tag = $_REQUEST['tag'];
 $sign_start = $_REQUEST['start'];
 $sign_end = $_REQUEST['end'];
 
-$weak = exec('python2.7 petsverifier.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end);
-$tag = exec('python2.7 getlinkagetag.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end);
+$weak = exec('python2.7 petsverifier.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end . ' ' . 'facebook.ids');
+$tag = exec('python2.7 getlinkagetag.py ' . $c0 . ' ' . $s . ' ' . $tag . ' ' . $sign_start . ' ' . $sign_end . ' ' . 'facebook.ids');
 
 //echo $c0;
 //echo $s;

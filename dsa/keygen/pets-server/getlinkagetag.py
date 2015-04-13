@@ -59,7 +59,10 @@ def getpubs(ids):
 #f = open(sigfile,'r')
 #ids,pubs2,s1 = pickle.load(f)
 
-ids=["jose.faleiro","baford","han.ma.39589","danny.jackowitz","ennan.zhai","lining.wang","christinehong802","seth.lifland","davidiw","esyta","weiyi.wu.319"]
+#ids=["jose.faleiro","baford","han.ma.39589","danny.jackowitz","ennan.zhai","lining.wang","christinehong802","seth.lifland","davidiw","esyta","weiyi.wu.319"]
+
+ids = [line.strip() for line in open(sys.argv[6])]
+
 ids.sort()
 s1 = [c0,s,tag]
 
