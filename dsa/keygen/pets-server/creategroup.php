@@ -90,8 +90,37 @@ $data = implode("\n", $dataarr);
     }
 }
 else {
-   die('No POST data to process');
+   echo('No POST data to process');
 }
+?>
+
+<br><br>
+<h1>Existing Groups</h1>
+<br>
+
+<?php
+
+// list all the available groups
+$groups = scandir('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups');
+foreach($groups as $result) {
+    if (strpos($result, 'com.txt') == FALSE){
+	if (strlen($result) == 6){
+		echo "<a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/$result'>Group $result</a><br>";
+		//$groupmembers = file_get_contents('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups/' . $result);
+		//echo $groupmembers;
+
+		//$lines = file('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups/' . $result, FILE_IGNORE_NEW_LINES);
+		//foreach($lines as $username) {
+		//	echo json_decode(file_get_contents('http://graph.facebook.com/' . $username))->name;
+		//}
+
+
+
+	}    
+    }
+
+}
+
 ?>
 
 
