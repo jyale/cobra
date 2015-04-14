@@ -91,7 +91,7 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 				<input hidden type='text' id='end' name='end'>
 				<input hidden type='text' id='groupid' name='groupid' value='<?php echo $_REQUEST["groupid"]; ?>'>
 			</div>
-			<input class="btn btn-warning btn-large" type='button' id='signin' value='DeDiS Anonymous Bulletin Board &raquo'>
+			<input class="btn btn-warning btn-large" type='button' id='signin' value='Anonymous Bulletin Board &raquo'>
 		</form>
 
 		<div id=info>

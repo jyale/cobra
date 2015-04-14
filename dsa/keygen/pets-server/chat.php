@@ -129,6 +129,13 @@ echo "<h2>All comments</h2><br><b>Colored word is anonymous username, text next 
 </p>
 </div></div>
 
+<h2>Shareable Link</h2>
+<p>
+Use this link to share this chat group with other members of the group.
+</p>
+
+<input type="text" name="link" value="http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=<?php echo($_REQUEST["groupid"]); ?>" size="200" readonly>
+
 <br><br>
 
 <?php
