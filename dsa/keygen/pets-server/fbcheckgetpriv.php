@@ -64,14 +64,13 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 }
 ?>
 			</span>
-			<span><h2>Crypto-Book keys for: Dedis group</h2></span></br>
+			<span><h2>Crypto-Book keys for group</h2></span></br>
 			<button class="btn btn-success btn-large" type=button id=save>Save Keys</button>
 		</div>
 		<div id="info">
 			<h3>What's actually happening?</h3>
-			We've pre-configured a set of Facebook identities for members
-			of DeDiS. When you visit this page, you fetch the public keys
-			for these identities from the Crypto-Book key servers - anybody
+			When you visit this page, you fetch the public keys
+			for the Facebook identities in the group from the Crypto-Book key servers - anybody
 			can retrieve these keys.
 			In order to produce a linkable ring signature, you also need
 			your own private key. The key servers will only return your
@@ -81,7 +80,7 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 			event and stores the set of keys in your browser's local storage.
 		</div>
 
-		<h3>Sign in to the DeDiS bulletin board.</h3>
+		<h3>Sign in to the bulletin board.</h3>
 		<form class='crypto-book-signin' action='verify.php' >
 			<div hidden>
 				<span id='challenge'>challenge</span>
@@ -98,7 +97,7 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 		<div id=info>
 			<h3>What's actually happening?</h3>
 			Here you get to use the keys you saved before to authenticate
-			as some member of the DeDiS group. This page includes a special
+			as some member of the group. This page includes a special
 			Crypto-Book signin widget that the extension recognizes. When
 			you click the button, the extension intercepts the event and
 			does some magic:
