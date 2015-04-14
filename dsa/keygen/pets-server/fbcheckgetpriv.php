@@ -40,9 +40,6 @@
       <div class="row">
                 <div class="span8">
 
-
-
-
 		<div class=crypto-book-keys>
 			<span id=keys hidden>
 <?php
@@ -56,7 +53,7 @@ if($array['name']=="Crypto-Bk"){
 
 $pubs = json_decode(file_get_contents("http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/getpub.php?groupid=" . $_REQUEST["groupid"]), true)['pubs'];
 
-$Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/fbgetpriv.php?id=" . $token)), 'L' => $pubs);
+$Data = array('groupid' => str_replace("groups/","",$_REQUEST["groupid"]), 'name' => file_get_contents($_REQUEST["groupid"] . "-name"), 'x' => (file_get_contents("http://mahan.webfactional.com/cobra2/dsa/keygen/pets-server/fbgetpriv.php?id=" . $token)), 'L' => $pubs);
 	echo json_encode($Data);
 
 }else{
@@ -89,9 +86,9 @@ $Data = array('name' => 'Dedis group', 'x' => (file_get_contents("http://mahan.w
 				<input type='text' id='tag' name='tag'>
 				<input hidden type='text' id='start' name='start'>
 				<input hidden type='text' id='end' name='end'>
-				<input hidden type='text' id='groupid' name='groupid' value='<?php echo $_REQUEST["groupid"]; ?>'>
+				<input hidden type='text' id='groupid' name='groupid'>
 			</div>
-			<input class="btn btn-warning btn-large" type='button' id='signin' value='Anonymous Bulletin Board &raquo'>
+			<input class="btn btn-warning btn-large crypto-book-signin-btn" type='button' id='<?php echo str_replace("groups/","",$_REQUEST["groupid"]); ?>' value='Anonymous Bulletin Board &raquo'>
 		</form>
 
 		<div id=info>

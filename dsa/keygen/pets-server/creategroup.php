@@ -119,6 +119,16 @@ else {
 <h1>Existing Groups</h1>
 <br>
 
+                <form class='crypto-book-signin' action='verify.php' >
+                        <div hidden>
+                                <span id='challenge'>challenge</span>
+                                <input type='text' id='c0' name='c0'>
+                                <input type='text' id='s' name='s'>
+                                <input type='text' id='tag' name='tag'>
+                                <input type='text' id='start' name='start'>
+                                <input type='text' id='end' name='end'>
+                                <input type='text' id='groupid' name='groupid'>
+                        </div>
 <?php
 
 // list all the available groups
@@ -126,26 +136,22 @@ $groups = scandir('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups');
 foreach($groups as $result) {
     if (strpos($result, 'com.txt') == FALSE){
 	if (strlen($result) == 6){
-		echo "<a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/$result'>";
-		echo file_get_contents("groups/" . $result . "-name");
-		echo "</a><br>";
-		//$groupmembers = file_get_contents('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups/' . $result);
-		//echo $groupmembers;
-
-		//$lines = file('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups/' . $result, FILE_IGNORE_NEW_LINES);
-		//foreach($lines as $username) {
-		//	echo json_decode(file_get_contents('http://graph.facebook.com/' . $username))->name;
-		//}
-
-
+		// echo a button instead of the link. The "id" of the button is the group id ($result). The "class" of the button
+		// is
+		echo "<input data-href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/$result' class='btn btn-warning btn-large crypto-book-signin-btn' type='button' id='$result' value='" . file_get_contents("groups/" . $result . "-name") .  "&raquo'>";
+echo "<br><br>";
+//		echo "<a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/$result'>";
+//		echo file_get_contents("groups/" . $result . "-name");
+//		echo "</a><br>";
+		
 
 	}    
     }
 
 }
-
 ?>
 
+</form>
 
 </p>
 </div></div>
