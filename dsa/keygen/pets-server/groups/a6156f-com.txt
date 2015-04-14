@@ -1,3 +1,2 @@
-<font color='#73fc1b'<b>Anonymous word</b></font> cool<br>
-<font color='#73fc1b'<b>Anonymous word</b></font> hahahaha<br>
+<font color='#73fc1b'<b>Anonymous word</b></font> it works!<br>
 0

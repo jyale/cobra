@@ -69,7 +69,7 @@ $hexcolor = $_REQUEST["color"];
 ?>
 
 <h1>
-Dedis anonymous comment board <?php echo($_REQUEST["groupid"]); ?> 
+<font color="red"><?php echo(file_get_contents($_REQUEST["groupid"] . "-name")); ?></font> anonymous comment board
 </h1>
 <b>Write your comment below to post to the anonymous comment board below.</b>
 <br><br>
@@ -123,7 +123,7 @@ file_put_contents($_REQUEST["groupid"] . '-com.txt', $file_data);
 }
 
 #Display comments#
-echo "<h2>All comments from Dedis group</h2><br><b>Colored word is anonymous username, text next to it is the message</b><br><br>";
+echo "<h2>All comments</h2><br><b>Colored word is anonymous username, text next to it is the message</b><br><br>";
 ?>
 <div id="com"></div>
 </p>

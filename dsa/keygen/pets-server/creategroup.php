@@ -61,6 +61,13 @@ echo $homepage;
 
 </textarea></label><br>
 
+<p>
+    <label><b>Group name</b></label>
+The name for your group.
+</p>
+<input type="text" name="groupname" value="DeDiS Group">
+
+
     <input type="submit" name="submit" value="Create Group">
 </form>
 
@@ -71,6 +78,7 @@ echo $homepage;
 <?php
 if(isset($_POST['field1'])) {
     $data = $_POST['field1'];
+    $groupname = $_POST['groupname'];
 
 $dataarr = preg_split("/[\r\n,]+/", $data, -1, PREG_SPLIT_NO_EMPTY);
 
@@ -80,13 +88,26 @@ $data = implode("\n", $dataarr);
     $groupid = 'groups/' . substr(hash('sha1', $data),0,6);
 
     //unlink($groupid);
+    $ret = true;
+    $newgroup = false;
 
-    $ret = file_put_contents($groupid, rtrim($data), LOCK_EX);
+    // create file only if the group has not already been created
+    if(!file_exists($groupid)){
+	$newgroup = true;
+	$ret = file_put_contents($groupid, rtrim($data), LOCK_EX);
+    	// save file contents
+    	file_put_contents($groupid . "-name", rtrim($groupname), LOCK_EX);
+    }
+
     if($ret === false) {
         die('There was an error creating the group (writing the group facebook ids file)');
     }
     else {
-	echo "Group created! <a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=$groupid'>Log in here!!!!</a>";
+	if($newgroup){
+		echo "Group created! <a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=$groupid'>Log in here!!!!</a>";
+	}else{
+		echo "Group already exists [" . file_get_contents($groupid . "-name") . "]! <a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=$groupid'>Log in here!!!!</a>";
+	}
     }
 }
 else {
@@ -105,7 +126,9 @@ $groups = scandir('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups');
 foreach($groups as $result) {
     if (strpos($result, 'com.txt') == FALSE){
 	if (strlen($result) == 6){
-		echo "<a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/$result'>Group $result</a><br>";
+		echo "<a href='http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/$result'>";
+		echo file_get_contents("groups/" . $result . "-name");
+		echo "</a><br>";
 		//$groupmembers = file_get_contents('/home/mahan/webapps/cobra2/dsa/keygen/pets-server/groups/' . $result);
 		//echo $groupmembers;
 
