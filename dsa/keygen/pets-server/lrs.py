@@ -1,3 +1,4 @@
+#!/usr/bin/env python2.7
 from Crypto.Random import random
 from Crypto.PublicKey import DSA
 from Crypto.Hash import SHA
@@ -7,7 +8,6 @@ p = 8988465674311579566479271194079617685111997008629509452591693927901441688451
 q = 941506596250216984203090146520333547538244481697
 g = 34602665038470649139675399213351821394778342143927940407384555720280713734040263824622508144389505207857155089278564186198863137963701380287457519992520537429937507501716393531967183791615285710169926131958833245212562988126415401503359363244583486448835867790065950788495491077021769975019105890787102335681
 
-
 # hash functions
 def H1(message):
 	# hash the message
@@ -16,13 +16,17 @@ def H1(message):
 	x = int(digest, 16)
 	# take it mod q
 	return x % q
+
 def H2(message):
-	# hash the message
-	digest = SHA.new(message).hexdigest()
-	# convert to integer
-	x = int(digest, 16)
-	# take it mod p
-	return x % p
+        # hash the message
+        digest = SHA.new(message).hexdigest()
+        # convert to integer
+        x = int(digest, 16)
+        # take it mod q
+        x = x % q
+        # raise g to the x mod p to get element of G
+        x = pow(g,x,p)
+        return x
 
 def verify(sig, m, L):
 	# print 'verifying...'	
@@ -33,7 +37,7 @@ def verify(sig, m, L):
 	c[0] = sig[0]
 	s = sig[1]
 	tag = sig[2]
-	h=g
+
 	# lists to store calculation results in (z' and z'' in LRS paper)
 	zp = range(n)
 	zpp = range(n)	
@@ -41,6 +45,8 @@ def verify(sig, m, L):
 	keystring = ''
 	for i in range(n):
 		keystring += str(L[i])
+	h=H2(keystring)
+
 	for i in range(n):
 		zp[i] = (pow(g,s[i],p) * pow(L[i],c[i],p)) % p
 		zpp[i] = (pow(h,s[i],p) * pow(tag,c[i],p)) % p
@@ -49,9 +55,7 @@ def verify(sig, m, L):
 	return (c[0] == c[n])
 
 def sign(m,L,x,pi):
-	# print 'signing...'
-	h = g
-	tag = pow(h,x,p)
+	# print 'signing...'	
 	n = len(L)
 	c = range(n)
 	s = range(n)
@@ -59,6 +63,9 @@ def sign(m,L,x,pi):
 	keystring = ''
 	for i in range(n):
 		keystring += str(L[i])
+	h=H2(keystring)
+	tag = pow(h,x,p)
+
 	keystring += str(tag) + m;
 	u = random.StrongRandom().randint(1,q-1)
 	c[(pi+1)%n] = H1(keystring + str(pow(g,u,p)) + str(pow(h,u,p)))
@@ -73,7 +80,8 @@ def sign(m,L,x,pi):
 	# the signature
 	sig = [c[0],s,tag]
 	return sig
-'''	
+
+	
 # generate private and public keys
 X = range(10)
 L = range(10)
@@ -81,20 +89,10 @@ for i in range(len(X)):
 	X[i] = random.StrongRandom().randint(1,q-1)
 	L[i] = pow(g,X[i],p)
 
-# test signing and verifying message with different private keys
 m = 'hello'	
+
+
 for i in range(len(X)):
-	for j in range(len(X)):
-		print str(i) + ',' + str(j) + ' ' + str((i == j) == verify(sign(m,L,X[i],j),L,m))
-
-# print verify(sign(m,L,X[50],50),L,m)
-'''
-
-
-
-
-
-
-
-
+        for j in range(len(X)):
+                print str(i) + ',' + str(j) + ' ' + str((i == j) == verify(sign(m,L,X[i],j),m,L))
 
