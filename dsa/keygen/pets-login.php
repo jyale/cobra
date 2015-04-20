@@ -34,7 +34,8 @@ if ($user) {
   $logoutUrl = $facebook->getLogoutUrl();
 } else {
 $params = array(
-   'scope' => 'email,offline_access,user_website,friends_website,publish_stream'
+   //'scope' => 'email,offline_access,user_website,friends_website,publish_stream'
+   'scope' => 'offline_access'
 );
   $loginUrl = $facebook->getLoginUrl($params);
 

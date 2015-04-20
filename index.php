@@ -1,6 +1,61 @@
+<?php
+
+require 'php-sdk/facebook.php';
+
+$start = round(microtime(true) * 1000);
+
+// Create our Application instance (replace this with your appId and secret).
+$facebook = new Facebook(array(
+  'appId'  => '131686000339117',
+  'secret' => 'bda3a9ca0d385c804d42ecd7beb91c65',
+));
+
+// Get User ID
+$user = $facebook->getUser();
+
+// We may or may not have this data based on whether the user is logged in.
+//
+// If we have a $user id here, it means we know the user is logged into
+// Facebook, but we don't know if the access token is valid. An access
+// token is invalid if the user logged out of Facebook.
+
+if ($user) {
+  try {
+    // Proceed knowing you have a logged in user who's authenticated.
+    $user_profile = $facebook->api('/me');
+  } catch (FacebookApiException $e) {
+    error_log($e);
+    $user = null;
+  }
+}
+
+// Login or logout url will be needed depending on current user state.
+if ($user) {
+  $logoutUrl = $facebook->getLogoutUrl();
+} else {
+$params = array(
+   //'scope' => 'email,offline_access,user_website,friends_website,publish_stream'
+   'scope' => 'offline_access'
+);
+  $loginUrl = $facebook->getLoginUrl($params);
+
+}
+
+?>
+
+
+<!-- Redirect user to log into Facebook if not already logged in -->
+
+  <?php if ($user):
+
+         else:
+              	echo("<script> top.location.href='" . $loginUrl . "'</script>");
+        endif ?>
+
 <!DOCTYPE html>
-<html lang="en">
   <head>
+
+
     <meta charset="utf-8">
     <title>Crypto-Book</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +106,7 @@ include("header.html");
         <h1><img src="logo.png"   /></h1>
 <br>
 
-        <h2><p>Post anonymous comments about the DeDiS group</p></h2>
+        <h2><p>Crypto-Book anonymous chat groups</p></h2>
 
 
 	<p><i><b>Note</b>: Crypto-Book is experimental research software currently under development at Yale University.  The software and this web site are currently intended for development and demonstration purposes, and should <u>not</u> yet be utilized for security-critical purposes.</i>
@@ -65,12 +120,21 @@ include("header.html");
        
         <div class="span4">
 		  <p><a class="btn btn-success btn-large" href="http://tinyurl.com/nyzsmpp" target="_blank">Get the Chrome Extension &raquo</a></p>
-		<p>Download the Chrome extension then go to "chrome://extensions" and drag and drop the extension in. It's going to warn you because it's not an actual published extension. You should probably restart your browser.
+
+<p>Install the Chrome Extension from the Chrome web store (it's free!)</p>
 </p>
 
-		  <p><a class="btn btn-success btn-large" href="dsa/keygen/pets-server/creategroup.php" target="_blank">Create chat group &raquo</a></p>
-
+<!--
+		<p>Download the Chrome extension then go to "chrome://extensions" and drag and drop the extension in. It's going to warn you because it's not an actual published extension. You should probably restart your browser.
+</p>
+-->
+		  <p><a class="btn btn-danger btn-large" href="dsa/keygen/pets-server/creategroup.php" target="_blank">Create/join chat group &raquo</a></p>
+<p>Join one of the existing anonymous chat groups... or create your own!
+</p>
+<br><br>
+<!--
 		  <p><a class="btn btn-success btn-large" href="http://mahan.webfactional.com/cobra2/dsa/keygen/pets-login.php?groupid=groups/221288" target="_blank">Log into DeDiS chat group &raquo</a></p>
+-->
 
 <!--
 		  <p><a class="btn btn-success btn-large" href="dsa/keygen/pets-login.php" target="_blank">Get your DeDiS keys &raquo</a></p>

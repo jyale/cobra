@@ -19,14 +19,14 @@ def H1(message):
 
 def H2(message):
         # hash the message
-        digest = SHA.new(message).hexdigest()
-        # convert to integer
+        digest = SHA.new(message).hexdigest()	
+	# convert to integer
         x = int(digest, 16)
         # take it mod q
         x = x % q
         # raise g to the x mod p to get element of G
         x = pow(g,x,p)
-        return x
+	return x
 
 def verify(sig, m, L):
 	# print 'verifying...'	
@@ -91,8 +91,8 @@ for i in range(len(X)):
 
 m = 'hello'	
 
-
+'''
 for i in range(len(X)):
         for j in range(len(X)):
                 print str(i) + ',' + str(j) + ' ' + str((i == j) == verify(sign(m,L,X[i],j),m,L))
-
+'''
