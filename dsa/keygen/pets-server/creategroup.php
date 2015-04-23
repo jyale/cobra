@@ -55,7 +55,7 @@ List Facebook IDs one per line in box below for the people you want in the group
 <form action="creategroup.php" method="POST">
     <label> Post: <br><textarea cols="40" rows="15" name="field1" autofocus>
 <?php
-$homepage = file_get_contents('groups/221288');
+$homepage = file_get_contents('example-group');
 echo $homepage;
 ?>
 
