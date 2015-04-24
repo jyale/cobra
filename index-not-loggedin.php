@@ -11,6 +11,6 @@ include("header.html");
    	<h1><img src="logo.png"   /></h1>
 <br>
 
-    	<h2><p>You must log in to view this web page</p></h2>
+    	<h2><p>Please log in with Facebook to view this web page</p></h2>
 
 
