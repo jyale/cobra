@@ -14,8 +14,9 @@ $facebook = new Facebook(array(
 // Get User ID
 $user = $facebook->getUser();
 $token = $facebook->getAccessToken();
-echo $token;
-echo '<br><br>';
+//echo $token;
+//echo '<br><br>';
+
 // Skip these two lines if you're using Composer
 define('FACEBOOK_SDK_V4_SRC_DIR', '/home/mahan/webapps/cobra2/dsa/keygen/pets-server/facebook-php-sdk-v4/src/Facebook/');
 require __DIR__ . '/facebook-php-sdk-v4/autoload.php';
@@ -46,46 +47,41 @@ try {
   $me = (new FacebookRequest(
     $session, 'GET', '/me'
   ))->execute()->getGraphObject(GraphUser::className());
-  echo $me->getName();
+  //echo $me->getName();
+
 
 $request = new FacebookRequest(
   $session,
   'GET',
-  '/307455162682924/members?limit=5000'
+  '/' . $_REQUEST['fbgroupid'] . '/members?limit=5000'
 );
 $response = $request->execute();
 $graphObject = $response->getGraphObject();
 
-echo '<br><br>';
-echo(count($graphObject->getPropertyAsArray('data')));
-echo '<br><br>';
+//echo '<br><br>';
+//echo(count($graphObject->getPropertyAsArray('data')));
+//echo '<br><br>';
 
 
-
+$usernameString = '';
 
 for ($i = 0; $i<count($graphObject->getPropertyAsArray('data')); $i++){
 	$curUser = $graphObject->getPropertyAsArray('data')[$i];
-	print_r($curUser->getProperty('name') . ' ' . $curUser->getProperty('id') . '<br>');
+	//print_r($curUser->getProperty('name') . ' ' . $curUser->getProperty('id') . '<br>');
 
 $test = 'https://graph.facebook.com/' . $curUser->getProperty('id') . '?access_token=' . $token;
 $json = file_get_contents($test);
 $obj = json_decode($json);
-echo $obj->username;
-
-
-$userrequest = new FacebookRequest(
-  $session,
-  'GET',
-  '/' . $curUser->getProperty('id')
-);
-$userresponse = $userrequest->execute();
-$userGraphObject = $userresponse->getGraphObject();
-//var_dump($userGraphObject->getProperty('username'));
-echo('<br><br><br>');
+//echo $obj->username;
+if(strlen($obj->username)>0){
+	$usernameString .= $obj->username . '<br>';
+}
+//echo('<br><br><br>');
 
 
 }
 
+echo $usernameString;
 
 } catch (FacebookRequestException $e) {
   // The Graph API returned an error
