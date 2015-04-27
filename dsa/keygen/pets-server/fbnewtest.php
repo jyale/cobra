@@ -12,8 +12,9 @@ $facebook = new Facebook(array(
 ));
 
 // Get User ID
-$user = $facebook->getUser();
-$token = $facebook->getAccessToken();
+//$user = $facebook->getUser();
+//$token = $facebook->getAccessToken();
+$token = $_REQUEST['token'];
 //echo $token;
 //echo '<br><br>';
 
@@ -64,6 +65,7 @@ $graphObject = $response->getGraphObject();
 
 
 $usernameString = '';
+$usernames = array();
 
 for ($i = 0; $i<count($graphObject->getPropertyAsArray('data')); $i++){
 	$curUser = $graphObject->getPropertyAsArray('data')[$i];
@@ -74,14 +76,16 @@ $json = file_get_contents($test);
 $obj = json_decode($json);
 //echo $obj->username;
 if(strlen($obj->username)>0){
-	$usernameString .= $obj->username . '<br>';
+	$usernameString .= $obj->username . '\n';
+	$usernames[$i] = $obj->username;
 }
 //echo('<br><br><br>');
 
 
 }
 
-echo $usernameString;
+//echo $usernameString;
+echo json_encode($usernames);
 
 } catch (FacebookRequestException $e) {
   // The Graph API returned an error

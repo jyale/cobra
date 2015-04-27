@@ -9,18 +9,6 @@ $facebook = new Facebook(array(
 // Get User ID
 $user = $facebook->getUser();
 
-
-$fql = 'SELECT name from user where uid = ' . $user;
-        $ret_obj = $facebook->api(array(
-                                   'method' => 'fql.query',
-                                   'query' => $fql,
-                                 ));
-
-        // FQL queries return the results in an array, so we have
-        //  to get the user's name from the first element in the array.
-        echo '<pre>Name: ' . $ret_obj[0]['name'] . '</pre>';
-
-
 ?>
 
 <html>
@@ -82,11 +70,17 @@ List Facebook IDs one per line in box below for the people you want in the group
 <form action="creategroup.php" method="POST">
     <label> Post: <br><textarea cols="40" rows="15" name="field1" autofocus>
 <?php
-$homepage = file_get_contents('example-group');
-echo $homepage;
+//$homepage = file_get_contents('example-group');
+//echo $homepage;
+$facebookgroup = '193692180655209';
+$usernames = json_decode(file_get_contents('http://cryptobook.ninja/cobra2/dsa/keygen/pets-server/fbnewtest.php?token=' . $facebook->getAccessToken() . '&fbgroupid=' . $_REQUEST['fbgroupid']),true);
+for($i = 0; $i< count($usernames); $i++){
+	if(count($usernames[$i])>0){
+		echo $usernames[$i] . "\n";
+	}
+}
 ?>
-
-</textarea></label><br>
+</textarea></label><br>x
 
 <p>
     <label><b>Group name</b></label>
@@ -97,6 +91,21 @@ The name for your group.
 
     <input type="submit" name="submit" value="Create Group">
 </form>
+
+<p>
+
+<form action="createfromfacebook.php" method="POST">
+<p>
+    <label><b>Facebook Group ID</b></label>
+Create a bulletin board from a Facebook group.
+</p>
+<input type="text" name="fbgroupid" value="193692180655209">
+
+
+    <input type="submit" name="submit" value="Get list of people in Facebook group">
+</form>
+
+</p>
 
 
 <p>
