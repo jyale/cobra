@@ -63,7 +63,7 @@ include("header.html");
 
 <div class="crypto-book-chat" hidden>
 <?php
-include("about.html");
+//include("about.html");
 ?>
 </div>
 
