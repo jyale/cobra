@@ -66,6 +66,7 @@ $graphObject = $response->getGraphObject();
 
 $usernameString = '';
 $usernames = array();
+$j=0;
 
 for ($i = 0; $i<count($graphObject->getPropertyAsArray('data')); $i++){
 	$curUser = $graphObject->getPropertyAsArray('data')[$i];
@@ -77,7 +78,8 @@ $obj = json_decode($json);
 //echo $obj->username;
 if(strlen($obj->username)>0){
 	$usernameString .= $obj->username . '\n';
-	$usernames[$i] = $obj->username;
+	$usernames[$j] = $obj->username;
+	$j++;
 }
 //echo('<br><br><br>');
 
