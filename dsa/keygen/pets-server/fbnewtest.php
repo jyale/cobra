@@ -66,34 +66,26 @@ echo '<br><br>';
 for ($i = 0; $i<count($graphObject->getPropertyAsArray('data')); $i++){
 	$curUser = $graphObject->getPropertyAsArray('data')[$i];
 	print_r($curUser->getProperty('name') . ' ' . $curUser->getProperty('id') . '<br>');
+
+$test = 'https://graph.facebook.com/' . $curUser->getProperty('id') . '?access_token=' . $token;
+$json = file_get_contents($test);
+$obj = json_decode($json);
+echo $obj->username;
+
+
+$userrequest = new FacebookRequest(
+  $session,
+  'GET',
+  '/' . $curUser->getProperty('id')
+);
+$userresponse = $userrequest->execute();
+$userGraphObject = $userresponse->getGraphObject();
+//var_dump($userGraphObject->getProperty('username'));
+echo('<br><br><br>');
+
+
 }
 
-
-/* $graphObject = $response->getGraphObject()->asArray();
-      var_dump($graphObject);
-      while($response){
-
-        var_dump($graphObject['data']);
-
-echo('<br>');
-echo('<br>');
-echo('<br>');
-
-        //echo $members['id'];
-
-
-
-        if($response->getRequestForNextPage() != null){
-
-          $response = $response->getRequestForNextPage()->execute();
-          var_dump($response->getRequestForNextPage());
-          continue;
-        }else{
-          break;
-        }
-      }
-
-*/
 
 } catch (FacebookRequestException $e) {
   // The Graph API returned an error
